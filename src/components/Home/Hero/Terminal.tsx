@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useQuery } from "@tanstack/react-query";
 import { axiosPublic } from "@/components/hooks/axiosPublic";
 import { TypewriterText } from "./TypewriterText";
+import { ChevronRight } from "lucide-react";
 
 // Define TypeScript interfaces
 interface CommandStep {
@@ -70,6 +71,7 @@ const Terminal: React.FC = () => {
     if (commands) {
       startNewCommand();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [commands]);
 
   if (isLoading) {
@@ -97,14 +99,16 @@ const Terminal: React.FC = () => {
       transition={{ duration: 0.8 }}
       className="relative bg-[#0a0a0a] rounded-lg border border-gray-800 backdrop-blur-sm overflow-hidden box-shadow"
     >
-      <div className="flex items-center gap-2 px-4 py-3 bg-[#0a0a0a] border-b border-gray-700">
+      <div className="flex items-center gap-2 px-4 py-3 bg-[#000] border-b border-gray-700">
+        <div className="flex-1 text-center">
+          <span className="flex justify-center items-center text-gray-400">
+            <ChevronRight className="w-4 h-4" />_ terminal
+          </span>
+        </div>
         <div className="flex gap-2">
           <div className="w-3 h-3 rounded-full bg-red-500" />
           <div className="w-3 h-3 rounded-full bg-yellow-500" />
           <div className="w-3 h-3 rounded-full bg-green-500" />
-        </div>
-        <div className="flex-1 text-center">
-          <span className="text-sm text-gray-400">~ zsh</span>
         </div>
       </div>
       <div className="p-4 text-white font-mono text-sm space-y-2 min-h-[320px] relative">
@@ -120,7 +124,7 @@ const Terminal: React.FC = () => {
             >
               <div className="flex items-center gap-2">
                 <span className="text-green-400">➜</span>
-                <span className="text-purple-400">~/</span>
+                {/* <span className="text-purple-400">~/</span> */}
                 {isTyping ? (
                   <>
                     <TypewriterText
@@ -135,7 +139,9 @@ const Terminal: React.FC = () => {
                     />
                   </>
                 ) : (
-                  <span className="text-white">{currentCommand.command}</span>
+                  <span className="text-green-400">
+                    {currentCommand.command}
+                  </span>
                 )}
               </div>
 
