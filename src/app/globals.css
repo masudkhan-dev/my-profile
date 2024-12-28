@@ -28,7 +28,7 @@
 
 /* From Uiverse.io by mobinkakei */
 .loader {
-  --path: #2f3545;
+  --path: #fff;
   --dot: #5628ee;
   --duration: 3s;
   width: 44px;

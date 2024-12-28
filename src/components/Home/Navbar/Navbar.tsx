@@ -18,10 +18,9 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-    // Mobile-specific intersection observer
     const options = {
       root: null,
-      rootMargin: "-45% 0px -45% 0px", // Adjusted for mobile viewport
+      rootMargin: "-45% 0px -45% 0px",
       threshold: 0,
     };
 
@@ -29,7 +28,6 @@ export default function Navbar() {
       const visibleSections = entries.filter((entry) => entry.isIntersecting);
 
       if (visibleSections.length > 0) {
-        // Get the first visible section
         const visibleSection = visibleSections[0];
         setActiveTab(visibleSection.target.id);
       }
@@ -37,7 +35,6 @@ export default function Navbar() {
 
     const observer = new IntersectionObserver(callback, options);
 
-    // Observe all sections
     NAVIGATION.forEach(({ id }) => {
       const element = document.getElementById(id);
       if (element) observer.observe(element);
@@ -50,15 +47,12 @@ export default function Navbar() {
     const section = document.getElementById(sectionId);
     if (!section) return;
 
-    // Get the height of the navbar
-    const navbarHeight = 64; // 4rem/64px - matches h-16 in the navbar
+    const navbarHeight = 64;
 
-    // Calculate scroll position
     const sectionRect = section.getBoundingClientRect();
     const absoluteTop = window.pageYOffset + sectionRect.top;
     const scrollToPosition = absoluteTop - navbarHeight;
 
-    // Perform scroll
     window.scrollTo({
       top: scrollToPosition,
       behavior: "smooth",
@@ -66,11 +60,9 @@ export default function Navbar() {
   };
 
   const handleMobileNavigation = (sectionId: string) => {
-    // Close mobile menu first
     setIsOpen(false);
     setActiveTab(sectionId);
 
-    // Small delay to allow menu to close
     setTimeout(() => {
       const element = document.getElementById(sectionId);
       if (!element) return;
@@ -78,14 +70,11 @@ export default function Navbar() {
       const navbar = document.querySelector("nav");
       const navbarHeight = navbar?.offsetHeight || 64;
 
-      // Get element's position relative to the viewport
       const elementRect = element.getBoundingClientRect();
 
-      // Calculate the scroll position
       const scrollPosition =
         window.pageYOffset + elementRect.top - navbarHeight;
 
-      // Perform the scroll
       window.scrollTo({
         top: scrollPosition,
         behavior: "smooth",
@@ -140,16 +129,19 @@ export default function Navbar() {
             ))}
           </div>
 
-          <motion.a
-            href="/resume.pdf"
-            download
-            className="hidden md:inline-flex items-center rounded-md bg-[#f8f9fa] px-4 py-2 text-sm font-medium text-[#0a0a0a]"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+          <Link
+            href="https://drive.google.com/file/d/18QN_7rqQC-Ng8vV7GUIqdB8NvAc_uUxz/view?usp=sharing"
+            target="_blank"
           >
-            <Download className="mr-2 h-4 w-4" />
-            Resume
-          </motion.a>
+            <motion.button
+              className="hidden md:inline-flex items-center rounded-md bg-[#A8D5BA] px-4 py-2 text-sm font-medium text-[#0a0a0a]"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <Download className="mr-2 h-4 w-4" />
+              Resume
+            </motion.button>
+          </Link>
 
           {/* Mobile Menu Button */}
           <button
@@ -162,53 +154,56 @@ export default function Navbar() {
         </div>
 
         {/* Mobile Menu - Updated with new handling */}
-       {/* Mobile Menu - Updated with new handling */}
-<motion.div
-  initial={false}
-  animate={isOpen ? { height: "auto", opacity: 1 } : { height: 0, opacity: 0 }}
-  transition={{ type: "spring", stiffness: 300, damping: 30 }}
-  className="md:hidden overflow-hidden bg-[#0a0a0a]"
->
-  <div className="space-y-1 p-3">
-    {NAVIGATION.map(({ id, label }) => (
-      <button
-        key={id}
-        onClick={() => handleMobileNavigation(id)}
-        className={`relative w-full rounded-md px-3 py-2 text-left text-sm font-medium transition-colors ${
-          activeTab === id ? "text-black" : "text-white"
-        }`}
-      >
-        {activeTab === id && (
-          <motion.span
-            layoutId="bubble-mobile"
-            className="absolute inset-0 rounded-md text-black bg-white"
-            transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
-          />
-        )}
-        <span className="relative z-10 flex items-center">
-          {label}
-          {activeTab === id && (
-            <motion.div
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              className="ml-2 h-1.5 w-1.5 rounded-full bg-[#000]"
-            />
-          )}
-        </span>
-      </button>
-    ))}
-    <motion.a
-      href="/resume.pdf"
-      download
-      whileTap={{ scale: 0.95 }}
-      className="mt-4 flex w-full items-center justify-center rounded-md bg-[#fff] px-3 py-2 text-sm font-medium text-[#0a0a0a]"
-    >
-      <Download className="mr-2 h-4 w-4" />
-      Resume
-    </motion.a>
-  </div>
-</motion.div>
-
+        <motion.div
+          initial={false}
+          animate={
+            isOpen ? { height: "auto", opacity: 1 } : { height: 0, opacity: 0 }
+          }
+          transition={{ type: "spring", stiffness: 300, damping: 30 }}
+          className="md:hidden overflow-hidden bg-[#0a0a0a]"
+        >
+          <div className="space-y-1 p-3">
+            {NAVIGATION.map(({ id, label }) => (
+              <button
+                key={id}
+                onClick={() => handleMobileNavigation(id)}
+                className={`relative w-full rounded-md px-3 py-2 text-left text-sm font-medium transition-colors ${
+                  activeTab === id ? "text-black" : "text-white"
+                }`}
+              >
+                {activeTab === id && (
+                  <motion.span
+                    layoutId="bubble-mobile"
+                    className="absolute inset-0 rounded-md text-black bg-white"
+                    transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                  />
+                )}
+                <span className="relative z-10 flex items-center">
+                  {label}
+                  {activeTab === id && (
+                    <motion.div
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      className="ml-2 h-1.5 w-1.5 rounded-full bg-[#000]"
+                    />
+                  )}
+                </span>
+              </button>
+            ))}
+            <Link
+              href="https://drive.google.com/file/d/18QN_7rqQC-Ng8vV7GUIqdB8NvAc_uUxz/view?usp=sharing"
+              target="_blank"
+            >
+              <motion.button
+                whileTap={{ scale: 0.95 }}
+                className="mt-4 flex w-full items-center justify-center rounded bg-[#A8D5BA] px-3 py-2 text-sm font-medium text-[#0a0a0a]"
+              >
+                <Download className="mr-2 h-4 w-4" />
+                Resume
+              </motion.button>
+            </Link>
+          </div>
+        </motion.div>
       </div>
     </nav>
   );
