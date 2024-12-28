@@ -18,11 +18,11 @@
     },
     {
       "command": "npx create-next-app@latest",
-      "result": "√ What is your project named? » my-app\n├── √ Would you like to use TypeScript? » Yes\n├── √ Would you like to use ESLint? » Yes\n├── √ Would you like to use Tailwind CSS? » Yes\n├── √ Would you like your code inside a `src/` directory? » Yes\n├── √ Would you like to use App Router? (recommended) » Yes\n├── √ Would you like to use Turbopack for `next dev`? » No\n├── √ Would you like to customize the import alias (`@/*` by default)? » No\n│ √ ... Initializing project with template: my-app"
+      "result": "√ What is your project named? » my-app\n √ Would you like to use TypeScript? » Yes\n √ Would you like to use ESLint? » Yes\n √ Would you like to use Tailwind CSS? » Yes\n √ Would you like your code inside a `src/` directory? » Yes\n √ Would you like to use App Router? (recommended) » Yes\n √ Would you like to use Turbopack for `next dev`? » No\n √ Would you like to customize the import alias (`@/*` by default)? » No\n √ ... Initializing project with template: my-app"
     },
     {
       "command": "npm create vite@latest",
-      "result": "√ Project name: » vite-project\n│   ├── √ Select a framework: » React\n│   ├── √  Select a variant: » TypeScript\n Scaffolding project in D:\\Portfolio\\My Profile\\vite-project... \n│   ├── Done. Now run:\n│   ├──  cd vite-project\n│   ├──  npm install\n│   ├── npm run dev"
+      "result": "√ Project name: » vite-project\n √ Select a framework: » React\n √  Select a variant: » TypeScript\n Scaffolding project in D:\\Portfolio\\My Profile\\vite-project... \n Done. Now run:\n  cd vite-project\n  npm install\n npm run dev"
     },
     {
       "command": "npm i express cors dotenv mongoose",

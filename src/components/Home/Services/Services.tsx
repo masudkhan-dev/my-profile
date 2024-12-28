@@ -75,8 +75,11 @@ const Services = () => {
   const secondRow = reviews.slice(Math.ceil(reviews.length / 2));
 
   return (
-    <div id="services">
-      <div className="relative flex h-[500px] w-full flex-col items-center justify-center gap-8 overflow-hidden bg-black">
+    <div>
+      <section
+        id="services"
+        className="relative flex h-[500px] w-full flex-col items-center justify-center gap-8 overflow-hidden bg-black min-h-screen"
+      >
         <Marquee pauseOnHover direction="left" speed={40}>
           <div className="flex">
             {firstRow.map(
@@ -111,7 +114,7 @@ const Services = () => {
         </Marquee>
         <div className="pointer-events-none absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-black via-black/80 to-transparent shadow-[inset_48px_0_48px_-12px_rgba(0,0,0,1)]" />
         <div className="pointer-events-none absolute inset-y-0 right-0 w-1/3 bg-gradient-to-l from-black via-black/80 to-transparent shadow-[inset_-48px_0_48px_-12px_rgba(0,0,0,1)]" />
-      </div>
+      </section>
     </div>
   );
 };
